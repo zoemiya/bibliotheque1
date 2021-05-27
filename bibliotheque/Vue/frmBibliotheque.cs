@@ -16,5 +16,12 @@ namespace bibliotheque.vue
         {
             InitializeComponent();
         }
+
+        private void frmBibliotheque_Load(object sender, EventArgs e)
+        {
+            // TODO: cette ligne de code charge les données dans la table 'bibliothequeDataSet.personnel'. Vous pouvez la déplacer ou la supprimer selon les besoins.
+            this.personnelTableAdapter.Fill(this.bibliothequeDataSet.personnel);
+
+        }
     }
 }
