@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using bibliotheque.Controleur;
 
 namespace bibliotheque.vue
 {
-    public partial class connexion : Form
+    public partial class frmAuthentification : Form
     {
-        public connexion()
+        public frmAuthentification(Controle controle)
         {
             InitializeComponent();
         }

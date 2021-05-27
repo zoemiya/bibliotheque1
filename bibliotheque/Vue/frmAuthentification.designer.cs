@@ -1,7 +1,7 @@
 ﻿
 namespace bibliotheque.vue
 {
-    partial class connexion
+    partial class frmAuthentification
     {
         /// <summary>
         /// Required designer variable.
@@ -88,7 +88,7 @@ namespace bibliotheque.vue
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "connexion";
-            this.Text = "connexion";
+            this.Text = "authentification";
             this.ResumeLayout(false);
             this.PerformLayout();
 
