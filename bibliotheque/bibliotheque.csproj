@@ -67,7 +67,7 @@
     <Compile Include="Dal\accesDonnees.cs" />
     <Compile Include="Modele\absence.cs" />
     <Compile Include="Modele\motif.cs" />
-    <Compile Include="Modele\personnel.cs" />
+    <Compile Include="Modele\Personnel.cs" />
     <Compile Include="Modele\reponsable.cs" />
     <Compile Include="Modele\service.cs" />
     <Compile Include="Program.cs" />

@@ -9,13 +9,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using bibliotheque.Controleur;
 
-namespace bibliotheque.vue
+namespace bibliotheque.Vue
 {
     public partial class frmAuthentification : Form
     {
         public frmAuthentification(Controle controle)
         {
             InitializeComponent();
+        }
+
+        private void btnConnexion_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

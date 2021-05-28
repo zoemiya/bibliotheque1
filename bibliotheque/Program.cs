@@ -4,11 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using bibliotheque.Controleur;
+using bibliotheque.Vue;
 
 namespace bibliotheque
+
 {
+    
     static class Program
     {
+        
         /// <summary>
         /// Point d'entrée principal de l'application.
         /// </summary>
@@ -17,6 +21,7 @@ namespace bibliotheque
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
             new Controle();
         }
     }

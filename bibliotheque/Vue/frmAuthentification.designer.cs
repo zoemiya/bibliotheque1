@@ -1,5 +1,5 @@
 ﻿
-namespace bibliotheque.vue
+namespace bibliotheque.Vue
 {
     partial class frmAuthentification
     {
@@ -76,8 +76,9 @@ namespace bibliotheque.vue
             this.btnConnexion.TabIndex = 4;
             this.btnConnexion.Text = "se connecter";
             this.btnConnexion.UseVisualStyleBackColor = true;
+            this.btnConnexion.Click += new System.EventHandler(this.btnConnexion_Click);
             // 
-            // connexion
+            // frmAuthentification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -87,7 +88,7 @@ namespace bibliotheque.vue
             this.Controls.Add(this.txtLogin);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "connexion";
+            this.Name = "frmAuthentification";
             this.Text = "authentification";
             this.ResumeLayout(false);
             this.PerformLayout();

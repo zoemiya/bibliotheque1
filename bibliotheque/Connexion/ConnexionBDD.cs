@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace Habilitations.connexion
+namespace bibliotheque.Connexion
 {
     /// <summary>
     /// Connexion à la base de données et exécution des requêtes

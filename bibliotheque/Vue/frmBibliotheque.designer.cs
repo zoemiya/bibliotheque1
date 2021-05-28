@@ -1,5 +1,5 @@
 ﻿
-namespace bibliotheque.vue
+namespace bibliotheque.Vue
 {
     partial class frmBibliotheque
     {
@@ -62,14 +62,14 @@ namespace bibliotheque.vue
             this.bibliothequeDataSet = new bibliotheque.bibliothequeDataSet();
             this.personnelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.personnelTableAdapter = new bibliotheque.bibliothequeDataSetTableAdapters.personnelTableAdapter();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvAbsences = new System.Windows.Forms.DataGridView();
+            this.dgvPersonnel = new System.Windows.Forms.DataGridView();
             this.gbPersonnel.SuspendLayout();
             this.gbAbsences.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bibliothequeDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.personnelBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAbsences)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonnel)).BeginInit();
             this.SuspendLayout();
             // 
             // gbPersonnel
@@ -111,6 +111,7 @@ namespace bibliotheque.vue
             this.btnEnregistrerP.TabIndex = 10;
             this.btnEnregistrerP.Text = "enregistrer";
             this.btnEnregistrerP.UseVisualStyleBackColor = true;
+            this.btnEnregistrerP.Click += new System.EventHandler(this.btnEnregistrerP_Click);
             // 
             // cbService
             // 
@@ -280,7 +281,7 @@ namespace bibliotheque.vue
             // 
             // btnAjouterP
             // 
-            this.btnAjouterP.Location = new System.Drawing.Point(395, 185);
+            this.btnAjouterP.Location = new System.Drawing.Point(395, 195);
             this.btnAjouterP.Name = "btnAjouterP";
             this.btnAjouterP.Size = new System.Drawing.Size(75, 23);
             this.btnAjouterP.TabIndex = 2;
@@ -289,7 +290,7 @@ namespace bibliotheque.vue
             // 
             // btnModifierP
             // 
-            this.btnModifierP.Location = new System.Drawing.Point(476, 185);
+            this.btnModifierP.Location = new System.Drawing.Point(476, 195);
             this.btnModifierP.Name = "btnModifierP";
             this.btnModifierP.Size = new System.Drawing.Size(75, 23);
             this.btnModifierP.TabIndex = 3;
@@ -298,7 +299,7 @@ namespace bibliotheque.vue
             // 
             // btnSupprimerP
             // 
-            this.btnSupprimerP.Location = new System.Drawing.Point(557, 185);
+            this.btnSupprimerP.Location = new System.Drawing.Point(557, 195);
             this.btnSupprimerP.Name = "btnSupprimerP";
             this.btnSupprimerP.Size = new System.Drawing.Size(75, 23);
             this.btnSupprimerP.TabIndex = 4;
@@ -307,7 +308,7 @@ namespace bibliotheque.vue
             // 
             // btnAfficherAbsence
             // 
-            this.btnAfficherAbsence.Location = new System.Drawing.Point(638, 185);
+            this.btnAfficherAbsence.Location = new System.Drawing.Point(638, 195);
             this.btnAfficherAbsence.Name = "btnAfficherAbsence";
             this.btnAfficherAbsence.Size = new System.Drawing.Size(96, 23);
             this.btnAfficherAbsence.TabIndex = 5;
@@ -355,29 +356,29 @@ namespace bibliotheque.vue
             // 
             this.personnelTableAdapter.ClearBeforeFill = true;
             // 
-            // dataGridView2
+            // dgvAbsences
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(365, 214);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(565, 196);
-            this.dataGridView2.TabIndex = 10;
+            this.dgvAbsences.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAbsences.Location = new System.Drawing.Point(365, 238);
+            this.dgvAbsences.Name = "dgvAbsences";
+            this.dgvAbsences.Size = new System.Drawing.Size(565, 172);
+            this.dgvAbsences.TabIndex = 10;
             // 
-            // dataGridView1
+            // dgvPersonnel
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(365, 12);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(565, 150);
-            this.dataGridView1.TabIndex = 11;
+            this.dgvPersonnel.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPersonnel.Location = new System.Drawing.Point(365, 12);
+            this.dgvPersonnel.Name = "dgvPersonnel";
+            this.dgvPersonnel.Size = new System.Drawing.Size(565, 177);
+            this.dgvPersonnel.TabIndex = 11;
             // 
             // frmBibliotheque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 450);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dgvPersonnel);
+            this.Controls.Add(this.dgvAbsences);
             this.Controls.Add(this.btnSupprimerA);
             this.Controls.Add(this.btnModifierA);
             this.Controls.Add(this.btnAjouterA);
@@ -389,15 +390,14 @@ namespace bibliotheque.vue
             this.Controls.Add(this.gbPersonnel);
             this.Name = "frmBibliotheque";
             this.Text = "frmBibliotheque";
-            this.Load += new System.EventHandler(this.frmBibliotheque_Load);
             this.gbPersonnel.ResumeLayout(false);
             this.gbPersonnel.PerformLayout();
             this.gbAbsences.ResumeLayout(false);
             this.gbAbsences.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bibliothequeDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.personnelBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAbsences)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonnel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -435,7 +435,7 @@ namespace bibliotheque.vue
         private bibliothequeDataSet bibliothequeDataSet;
         private System.Windows.Forms.BindingSource personnelBindingSource;
         private bibliothequeDataSetTableAdapters.personnelTableAdapter personnelTableAdapter;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvAbsences;
+        private System.Windows.Forms.DataGridView dgvPersonnel;
     }
 }

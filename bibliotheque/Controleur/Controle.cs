@@ -1,5 +1,8 @@
 ﻿using System;
-using bibliotheque.vue;
+using bibliotheque.Vue;
+using bibliotheque.Modele;
+using bibliotheque.Dal;
+using System.Collections.Generic;
 
 namespace bibliotheque.Controleur
 {
@@ -10,6 +13,7 @@ namespace bibliotheque.Controleur
             /// fenêtre d'authentification
             /// </summary>
         private frmAuthentification frmAuthentification;
+        private frmBibliotheque frmBibliotheque;
     
 
         /// <summary>
@@ -17,8 +21,16 @@ namespace bibliotheque.Controleur
         /// </summary>
         public Controle()
         {
-            frmAuthentification = new frmAuthentification(this);
-            frmAuthentification.ShowDialog();
+            //frmAuthentification = new frmAuthentification(this);
+            //frmAuthentification.ShowDialog();
+            frmBibliotheque = new frmBibliotheque(this);
+            frmBibliotheque.ShowDialog();
+        }
+
+        public List<Personnel> GetLePersonnel()
+        {
+            
+            return AccesDonnees.GetLePersonnel();
         }
     
     }
