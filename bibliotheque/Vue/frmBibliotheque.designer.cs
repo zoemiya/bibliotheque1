@@ -86,7 +86,6 @@ namespace bibliotheque.Vue
             this.gbPersonnel.Controls.Add(this.label3);
             this.gbPersonnel.Controls.Add(this.label1);
             this.gbPersonnel.Controls.Add(this.label2);
-            this.gbPersonnel.Enabled = false;
             this.gbPersonnel.Location = new System.Drawing.Point(12, 12);
             this.gbPersonnel.Name = "gbPersonnel";
             this.gbPersonnel.Size = new System.Drawing.Size(328, 224);
@@ -111,7 +110,6 @@ namespace bibliotheque.Vue
             this.btnEnregistrerP.TabIndex = 10;
             this.btnEnregistrerP.Text = "enregistrer";
             this.btnEnregistrerP.UseVisualStyleBackColor = true;
-            this.btnEnregistrerP.Click += new System.EventHandler(this.btnEnregistrerP_Click);
             // 
             // cbService
             // 
@@ -287,6 +285,7 @@ namespace bibliotheque.Vue
             this.btnAjouterP.TabIndex = 2;
             this.btnAjouterP.Text = "ajouter";
             this.btnAjouterP.UseVisualStyleBackColor = true;
+            this.btnAjouterP.Click += new System.EventHandler(this.btnAjouterP_Click);
             // 
             // btnModifierP
             // 

@@ -8,7 +8,7 @@ namespace bibliotheque.Modele
     public class Personnel
     {
         private int idpersonnel;
-        private int idservice;
+        private string service;
         private string nom;
         private string prenom;
         private string mail;
@@ -20,19 +20,21 @@ namespace bibliotheque.Modele
         public string Tel { get => tel; }
         public string Mail { get => mail; }
 
+        public string Service { get => service; }
+
         /// <summary>
         /// Constructeur : valorise les propriétés
         /// </summary>
         /// <param name="idpersonnel"></param>
-        /// <param name="idservice"></param>
+        /// <param name="service"></param>
         /// <param name="nom"></param>
         /// <param name="prenom"></param>
         /// <param name="mail"></param>
         /// <param name="tel"></param>
-        public Personnel(int idpersonnel, int idservice, string nom, string prenom, string mail, string tel)
+        public Personnel(int idpersonnel, string nom, string prenom, string mail, string tel, string service)
         {
             this.idpersonnel = idpersonnel;
-            this.idservice = idservice;
+            this.service = service;
             this.nom = nom;
             this.prenom = prenom;
             this.tel = tel;

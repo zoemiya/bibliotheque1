@@ -44,6 +44,11 @@ namespace bibliotheque.Controleur
             
             return AccesDonnees.GetLePersonnel();
         }
+
+        public List<Service> GetLesServices()
+        {
+            return AccesDonnees.GetLesServices();
+        }
     
     }
 }

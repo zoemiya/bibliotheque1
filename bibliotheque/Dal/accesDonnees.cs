@@ -42,30 +42,50 @@ namespace bibliotheque.Dal
         /// Récupère et retourne le personnel provenant de la BDD
         /// </summary>
         /// <returns>liste du personnel</returns>
-        public static List <Personnel> GetLePersonnel()
+        public static List<Personnel> GetLePersonnel()
         {
             List<Personnel> lePersonnel = new List<Personnel>();
-            string req = "select * from personnel order by NOM, PRENOM;";
+            string req = "select idpersonnel, p.nom as nom, prenom, tel, mail, s.nom as service ";
+            req += " from personnel p join service s on (p.idservice=s.idservice) ";
+            req += "order by nom, prenom;";
             ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
             curs.ReqSelect(req, null);
-            int k = 0;
+
             while (curs.Read())
             {
-                Personnel personnel = new Personnel((int)curs.Field("IDPERSONNEL"), (int)curs.Field("IDSERVICE"), (string)curs.Field("NOM"), (string)curs.Field("PRENOM"), (string)curs.Field("TEL"), (string)curs.Field("MAIL"));
+                Personnel personnel = new Personnel((int)curs.Field("IDPERSONNEL"), (string)curs.Field("NOM"), (string)curs.Field("PRENOM"), (string)curs.Field("TEL"), (string)curs.Field("MAIL"), (string)curs.Field("SERVICE"));
                 lePersonnel.Add(personnel);
-                k += 1;
+
             }
             curs.Close();
             return lePersonnel;
+        }
 
+        /// <summary>
+        /// récupère les services provenant de la BDD
+        /// </summary>
+        /// <returns></returns>
+        public static List<Service> GetLesServices()
+        {
+            List<Service> lesServices = new List<Service>();
+            string req = "select idservice, nom from service order by nom;";
+            ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
+            curs.ReqSelect(req, null);
+            while (curs.Read())
+            {
+                Service service = new Service((int)curs.Field("IDSERVICE"), (string)curs.Field("NOM"));
+                lesServices.Add(service);
+            }
+            curs.Close();
+            return lesServices;
         }
 
 
         public AccesDonnees()
         {
         }
-    }
 
+    }
        
 
 }

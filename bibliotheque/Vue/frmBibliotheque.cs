@@ -27,6 +27,8 @@ namespace bibliotheque.Vue
         /// </summary>
         BindingSource bdgPersonnel = new BindingSource();
 
+        BindingSource bdgService = new BindingSource();
+
         /// <summary>
         /// Objet pour gérer la liste des absences
         /// </summary>
@@ -47,6 +49,9 @@ namespace bibliotheque.Vue
         public void Init()
         {
             RemplirListePersonnel();
+            RemplirListeServices();
+            gbPersonnel.Enabled = false;
+            gbAbsences.Enabled = false;
             
         }
 
@@ -58,13 +63,31 @@ namespace bibliotheque.Vue
             List<Personnel> lePersonnel = controle.GetLePersonnel();
             bdgPersonnel.DataSource = lePersonnel;
             dgvPersonnel.DataSource = bdgPersonnel;
+            dgvPersonnel.Columns["idpersonnel"].Visible = false;
             dgvPersonnel.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
+        }
+
+        /// <summary>
+        /// affiche les services dans la combobox
+        /// </summary>
+        public void RemplirListeServices()
+        {
+            List<Service> lesServices = controle.GetLesServices();
+            bdgService.DataSource = lesServices;
+            cbService.DataSource = bdgService;
+            if (cbService.Items.Count > 0)
+            {
+                cbService.SelectedIndex = 0;
+              
+            }
         }
 
         private void btnEnregistrerP_Click(object sender, EventArgs e)
         {
 
         }
+
+
     }
 }
