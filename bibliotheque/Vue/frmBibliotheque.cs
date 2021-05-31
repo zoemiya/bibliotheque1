@@ -88,6 +88,32 @@ namespace bibliotheque.Vue
 
         }
 
+        private void btnAjouterP_Click(object sender, EventArgs e)
+        {
+            gbPersonnel.Enabled = true;
+                    }
 
+        private void btnEnregistrerP_Click_1(object sender, EventArgs e)
+        {
+            if (!txtNom.Text.Equals("") && !txtPrenom.Text.Equals("") && !txtTel.Text.Equals("") && !txtMail.Text.Equals("") && cbService.SelectedIndex != -1)
+            {
+                Service service = (Service)bdgService.List[bdgService.Position];
+                int idpersonnel = dgvPersonnel.RowCount;
+                Personnel personnel = new Personnel(idpersonnel, txtNom.Text, txtPrenom.Text, txtTel.Text, txtMail.Text, service.Idservice, service.Nom);
+                controle.AjouterPersonnel(personnel);
+                RemplirListePersonnel();
+            }
+            else
+            { MessageBox.Show("Tous les champs doivent être renseignés.", "Alerte"); }
+        }
+
+        private void btnAnnulerP_Click(object sender, EventArgs e)
+        {
+            txtNom.Text = "";
+            txtPrenom.Text = "";
+            txtTel.Text = "";
+            txtMail.Text = "";
+            cbService.SelectedIndex = 0;
+        }
     }
 }

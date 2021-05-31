@@ -45,7 +45,7 @@ namespace bibliotheque.Dal
         public static List<Personnel> GetLePersonnel()
         {
             List<Personnel> lePersonnel = new List<Personnel>();
-            string req = "select idpersonnel, p.nom as nom, prenom, tel, mail, s.nom as service ";
+            string req = "select idpersonnel, p.nom as nom, prenom, tel, mail, s.idservice, s.nom as service ";
             req += " from personnel p join service s on (p.idservice=s.idservice) ";
             req += "order by nom, prenom;";
             ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
@@ -53,7 +53,7 @@ namespace bibliotheque.Dal
 
             while (curs.Read())
             {
-                Personnel personnel = new Personnel((int)curs.Field("IDPERSONNEL"), (string)curs.Field("NOM"), (string)curs.Field("PRENOM"), (string)curs.Field("TEL"), (string)curs.Field("MAIL"), (string)curs.Field("SERVICE"));
+                Personnel personnel = new Personnel((int)curs.Field("IDPERSONNEL"), (string)curs.Field("NOM"), (string)curs.Field("PRENOM"), (string)curs.Field("MAIL"), (string)curs.Field("TEL"), (int)curs.Field("IDSERVICE"), (string)curs.Field("SERVICE"));
                 lePersonnel.Add(personnel);
 
             }
@@ -80,9 +80,27 @@ namespace bibliotheque.Dal
             return lesServices;
         }
 
+        /// <summary>
+        /// ajout d un membre du personnel
+        /// </summary>
+        /// <param name="personnel"></param>
+        public static void AjouterPersonnel(Personnel personnel)
+        {
+            string req = "insert into personnel(nom, prenom, tel, mail, idservice) ";
+            req += "values (@nom, @prenom, @tel, @mail, @idservice);";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@nom", personnel.Nom);
+            parameters.Add("@prenom", personnel.Prenom);
+            parameters.Add("@tel", personnel.Tel);
+            parameters.Add("@mail", personnel.Mail);
+            parameters.Add("@idservice", personnel.Idservice);
+            ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
+            conn.ReqUpdate(req, parameters);
+        }
 
         public AccesDonnees()
         {
+
         }
 
     }

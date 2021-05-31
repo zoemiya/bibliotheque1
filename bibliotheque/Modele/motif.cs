@@ -1,8 +1,17 @@
 ﻿using System;
 
-public class Motif
+namespace bibliotheque.Modele
 {
-	public Motif()
-	{
-	}
+    /// <summary>
+    /// les motifs
+    /// </summary>
+    public class Motif
+    {
+        /// <summary>
+        /// constructeur de classe
+        /// </summary>
+        public Motif()
+        {
+        }
+    }
 }

@@ -101,6 +101,7 @@ namespace bibliotheque.Vue
             this.btnAnnulerP.TabIndex = 11;
             this.btnAnnulerP.Text = "annuler";
             this.btnAnnulerP.UseVisualStyleBackColor = true;
+            this.btnAnnulerP.Click += new System.EventHandler(this.btnAnnulerP_Click);
             // 
             // btnEnregistrerP
             // 
@@ -110,6 +111,7 @@ namespace bibliotheque.Vue
             this.btnEnregistrerP.TabIndex = 10;
             this.btnEnregistrerP.Text = "enregistrer";
             this.btnEnregistrerP.UseVisualStyleBackColor = true;
+            this.btnEnregistrerP.Click += new System.EventHandler(this.btnEnregistrerP_Click_1);
             // 
             // cbService
             // 

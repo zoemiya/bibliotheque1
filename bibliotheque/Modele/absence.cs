@@ -1,8 +1,18 @@
 ﻿using System;
 
-public class Absence
+namespace bibliotheque.Modele
 {
-	public Absence()
-	{
-	}
+
+    /// <summary>
+    /// absences
+    /// </summary>
+    public class Absence
+    {
+        /// <summary>
+        /// constructeur de classe
+        /// </summary>
+        public Absence()
+        {
+        }
+    }
 }

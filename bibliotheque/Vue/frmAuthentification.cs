@@ -15,6 +15,10 @@ namespace bibliotheque.Vue
     {
         private Controle controle;
 
+        /// <summary>
+        /// initialisation fenetre authentification
+        /// </summary>
+        /// <param name="controle"></param>
         public frmAuthentification(Controle controle)
         {
             InitializeComponent();

@@ -6,6 +6,9 @@ using System.Collections.Generic;
 
 namespace bibliotheque.Controleur
 {
+    /// <summary>
+    /// gère les interactions entre la vue et le modèle
+    /// </summary>
     public class Controle
     {
        
@@ -13,7 +16,6 @@ namespace bibliotheque.Controleur
             /// fenêtre d'authentification
             /// </summary>
         private frmAuthentification frmAuthentification;
-        private frmBibliotheque frmBibliotheque;
 
 
         /// <summary>
@@ -25,6 +27,14 @@ namespace bibliotheque.Controleur
             frmAuthentification.ShowDialog();
         }
 
+
+        /// <summary>
+        /// Demande la vérification de l'authentification
+        /// Si correct, alors ouvre la fenêtre principale
+        /// </summary>
+        /// <param name="login"></param>
+        /// <param name="pwd"></param>
+        /// <returns></returns>
         public Boolean ControleAuthentification(string login, string pwd)
         {
             if (AccesDonnees.ControleAuthentification(login, pwd))
@@ -39,15 +49,32 @@ namespace bibliotheque.Controleur
             }
         }
 
+        /// <summary>
+        /// Recupere et retourne les infos sur le personnel provenant de la BDD
+        /// </summary>
+        /// <returns>liste du personnel</returns>
         public List<Personnel> GetLePersonnel()
         {
             
             return AccesDonnees.GetLePersonnel();
         }
 
+        /// <summary>
+        /// Recupere la liste des différents services provenant de la BDD
+        /// </summary>
+        /// <returns>liste des services</returns>
         public List<Service> GetLesServices()
         {
             return AccesDonnees.GetLesServices();
+        }
+
+        /// <summary>
+        /// demande l'ajout d'un membre du personnel 
+        /// </summary>
+        /// <param name="personnel"> objet personnel a ajouter</param>
+        public void AjouterPersonnel(Personnel personnel)
+        {
+            AccesDonnees.AjouterPersonnel(personnel);
         }
     
     }
