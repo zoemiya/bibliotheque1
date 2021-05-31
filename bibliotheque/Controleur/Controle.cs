@@ -14,17 +14,29 @@ namespace bibliotheque.Controleur
             /// </summary>
         private frmAuthentification frmAuthentification;
         private frmBibliotheque frmBibliotheque;
-    
+
 
         /// <summary>
         /// Ouverture de la fenêtre
         /// </summary>
         public Controle()
         {
-            //frmAuthentification = new frmAuthentification(this);
-            //frmAuthentification.ShowDialog();
-            frmBibliotheque = new frmBibliotheque(this);
-            frmBibliotheque.ShowDialog();
+            frmAuthentification = new frmAuthentification(this);
+            frmAuthentification.ShowDialog();
+        }
+
+        public Boolean ControleAuthentification(string login, string pwd)
+        {
+            if (AccesDonnees.ControleAuthentification(login, pwd))
+            {
+                frmAuthentification.Hide();
+                (new frmBibliotheque(this)).ShowDialog();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public List<Personnel> GetLePersonnel()

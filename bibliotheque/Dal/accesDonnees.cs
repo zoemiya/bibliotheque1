@@ -15,6 +15,29 @@ namespace bibliotheque.Dal
     {
         private static string connectionString = "server=localhost;user id=root;database=bibliotheque;SslMode=none";
 
+        ///
+        public static Boolean ControleAuthentification(string login, string pwd)
+        {
+            string req = "select * from responsable ";
+            req += "where login=@login and pwd=@pwd;";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@login", login);
+            parameters.Add("@pwd", pwd);
+            ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
+            curs.ReqSelect(req, parameters);
+            if (curs.Read())
+            {
+                curs.Close();
+                return true;
+            }
+            else
+            {
+                curs.Close();
+                return false;
+            }
+        }
+
+
         /// <summary>
         /// Récupère et retourne le personnel provenant de la BDD
         /// </summary>
@@ -22,9 +45,7 @@ namespace bibliotheque.Dal
         public static List <Personnel> GetLePersonnel()
         {
             List<Personnel> lePersonnel = new List<Personnel>();
-            string req = "select IDPERSONNEL, IDSERVICE, NOM,  PRENOM, TEL, MAIL";
-            req += "from personnel";
-            req += "order by NOM, PRENOM;";
+            string req = "select * from personnel order by NOM, PRENOM;";
             ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
             curs.ReqSelect(req, null);
             int k = 0;

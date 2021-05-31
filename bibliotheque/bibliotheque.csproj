@@ -64,7 +64,7 @@
     </Compile>
     <Compile Include="Connexion\ConnexionBDD.cs" />
     <Compile Include="Controleur\Controle.cs" />
-    <Compile Include="Dal\accesDonnees.cs" />
+    <Compile Include="Dal\AccesDonnees.cs" />
     <Compile Include="Modele\absence.cs" />
     <Compile Include="Modele\motif.cs" />
     <Compile Include="Modele\Personnel.cs" />
