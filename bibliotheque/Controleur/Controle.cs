@@ -76,6 +76,25 @@ namespace bibliotheque.Controleur
         {
             AccesDonnees.AjouterPersonnel(personnel);
         }
+        
+        /// <summary>
+        /// demande la modification d'un membre du personnel
+        /// </summary>
+        /// <param name="personnel"></param>
+        public void ModifierPersonnel(Personnel personnel)
+        {
+            AccesDonnees.ModifierPersonnel(personnel);
+        }
+
+        public void SupprimerPersonnel(Personnel personnel)
+        {
+            AccesDonnees.SupprimerPersonnel(personnel);
+        }
+
+        public List<Absence> GetAbsences(Personnel personnel)
+        {
+            return AccesDonnees.GetAbsences(personnel);
+        }
     
     }
 }

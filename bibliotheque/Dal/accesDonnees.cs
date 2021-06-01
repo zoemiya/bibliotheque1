@@ -98,6 +98,49 @@ namespace bibliotheque.Dal
             conn.ReqUpdate(req, parameters);
         }
 
+        public static void ModifierPersonnel(Personnel personnel)
+        {
+            string req = "update personnel set nom = @nom, prenom = @prenom, tel = @tel, mail = @mail, idservice = @idservice ";
+            req += "where idpersonnel = @idpersonnel;";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@idpersonnel", personnel.Idpersonnel);
+            parameters.Add("@nom", personnel.Nom);
+            parameters.Add("@prenom", personnel.Prenom);
+            parameters.Add("@tel", personnel.Tel);
+            parameters.Add("@mail", personnel.Mail);
+            parameters.Add("@idservice", personnel.Idservice);
+            ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
+            conn.ReqUpdate(req, parameters);
+        }
+
+
+        public static void SupprimerPersonnel(Personnel personnel)
+        {
+            string req = "delete from personnel where idpersonnel = @idpersonnel;";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@idpersonnel", personnel.Idpersonnel);
+            ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
+            conn.ReqUpdate(req, parameters);
+        }
+
+        public static List<Absence> GetAbsences(Personnel personnel)
+        {
+            List<Absence> lesAbsences = new List<Absence>();
+            string req = "select * from absence order by nom ";
+            ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
+            curs.ReqSelect(req, null);
+
+            while (curs.Read())
+            {
+                Absence absence = new Absence((int)curs.Field("IDABSENCE"), (string)curs.Field("NOM"));
+                lesAbsences.Add(absence);
+                    
+
+            }
+            curs.Close();
+            return lesAbsences;
+        }
+
         public AccesDonnees()
         {
 

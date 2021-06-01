@@ -297,6 +297,7 @@ namespace bibliotheque.Vue
             this.btnModifierP.TabIndex = 3;
             this.btnModifierP.Text = "modifier";
             this.btnModifierP.UseVisualStyleBackColor = true;
+            this.btnModifierP.Click += new System.EventHandler(this.btnModifierP_Click);
             // 
             // btnSupprimerP
             // 
@@ -306,6 +307,7 @@ namespace bibliotheque.Vue
             this.btnSupprimerP.TabIndex = 4;
             this.btnSupprimerP.Text = "supprimer";
             this.btnSupprimerP.UseVisualStyleBackColor = true;
+            this.btnSupprimerP.Click += new System.EventHandler(this.btnSupprimerP_Click);
             // 
             // btnAfficherAbsence
             // 
@@ -315,9 +317,11 @@ namespace bibliotheque.Vue
             this.btnAfficherAbsence.TabIndex = 5;
             this.btnAfficherAbsence.Text = "afficherAbsence";
             this.btnAfficherAbsence.UseVisualStyleBackColor = true;
+            this.btnAfficherAbsence.Click += new System.EventHandler(this.btnAfficherAbsence_Click);
             // 
             // btnAjouterA
             // 
+            this.btnAjouterA.Enabled = false;
             this.btnAjouterA.Location = new System.Drawing.Point(395, 416);
             this.btnAjouterA.Name = "btnAjouterA";
             this.btnAjouterA.Size = new System.Drawing.Size(75, 23);
@@ -327,6 +331,7 @@ namespace bibliotheque.Vue
             // 
             // btnModifierA
             // 
+            this.btnModifierA.Enabled = false;
             this.btnModifierA.Location = new System.Drawing.Point(476, 416);
             this.btnModifierA.Name = "btnModifierA";
             this.btnModifierA.Size = new System.Drawing.Size(75, 23);
@@ -336,6 +341,7 @@ namespace bibliotheque.Vue
             // 
             // btnSupprimerA
             // 
+            this.btnSupprimerA.Enabled = false;
             this.btnSupprimerA.Location = new System.Drawing.Point(557, 416);
             this.btnSupprimerA.Name = "btnSupprimerA";
             this.btnSupprimerA.Size = new System.Drawing.Size(75, 23);

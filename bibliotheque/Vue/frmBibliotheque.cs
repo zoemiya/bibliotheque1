@@ -22,12 +22,16 @@ namespace bibliotheque.Vue
         /// </summary>
         private Controle controle;
 
+        private Boolean enCoursDeModif = false;
+
         /// <summary>
         /// Objet pour gérer la liste du personnel
         /// </summary>
         BindingSource bdgPersonnel = new BindingSource();
 
         BindingSource bdgService = new BindingSource();
+
+        
 
         /// <summary>
         /// Objet pour gérer la liste des absences
@@ -52,6 +56,7 @@ namespace bibliotheque.Vue
             RemplirListeServices();
             gbPersonnel.Enabled = false;
             gbAbsences.Enabled = false;
+            gbPersonnel.Text = "";
             
         }
 
@@ -63,7 +68,7 @@ namespace bibliotheque.Vue
             List<Personnel> lePersonnel = controle.GetLePersonnel();
             bdgPersonnel.DataSource = lePersonnel;
             dgvPersonnel.DataSource = bdgPersonnel;
-            dgvPersonnel.Columns["idpersonnel"].Visible = false;
+            
             dgvPersonnel.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
         }
@@ -91,6 +96,7 @@ namespace bibliotheque.Vue
         private void btnAjouterP_Click(object sender, EventArgs e)
         {
             gbPersonnel.Enabled = true;
+            gbPersonnel.Text = "ajouter un membre du personnel";
                     }
 
         private void btnEnregistrerP_Click_1(object sender, EventArgs e)
@@ -98,9 +104,24 @@ namespace bibliotheque.Vue
             if (!txtNom.Text.Equals("") && !txtPrenom.Text.Equals("") && !txtTel.Text.Equals("") && !txtMail.Text.Equals("") && cbService.SelectedIndex != -1)
             {
                 Service service = (Service)bdgService.List[bdgService.Position];
-                int idpersonnel = dgvPersonnel.RowCount;
+                int idpersonnel = 0;
+                if (enCoursDeModif)
+                {
+                    idpersonnel = ((Personnel)bdgPersonnel.List[bdgPersonnel.Position]).Idpersonnel;
+                }
                 Personnel personnel = new Personnel(idpersonnel, txtNom.Text, txtPrenom.Text, txtTel.Text, txtMail.Text, service.Idservice, service.Nom);
-                controle.AjouterPersonnel(personnel);
+                if (enCoursDeModif)
+                {
+                    controle.ModifierPersonnel(personnel);
+                    enCoursDeModif = false;
+                    gbPersonnel.Text = "";
+
+                }
+                else
+                {
+                    controle.AjouterPersonnel(personnel);
+                }
+                
                 RemplirListePersonnel();
             }
             else
@@ -114,6 +135,64 @@ namespace bibliotheque.Vue
             txtTel.Text = "";
             txtMail.Text = "";
             cbService.SelectedIndex = 0;
+        }
+
+        private void btnModifierP_Click(object sender, EventArgs e)
+        {
+            if (dgvPersonnel.SelectedRows.Count > 0)
+            {
+                gbPersonnel.Text = "modifierPersonnel";
+                gbPersonnel.Enabled = true;
+                enCoursDeModif = true;
+                Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                txtNom.Text = personnel.Nom;
+                txtPrenom.Text = personnel.Prenom;
+                txtTel.Text = personnel.Tel;
+                txtMail.Text = personnel.Mail;
+                cbService.SelectedIndex = cbService.FindStringExact(personnel.Service);
+               
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
+            }
+        
+        }
+
+        private void btnSupprimerP_Click(object sender, EventArgs e)
+        {
+            if (dgvPersonnel.SelectedRows.Count > 0)
+            {
+                Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                if (MessageBox.Show("Voulez-vous vraiment supprimer " + personnel.Nom + " " + personnel.Prenom + " ?", "Confirmation de suppression", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    controle.SupprimerPersonnel(personnel);
+                    RemplirListePersonnel();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
+            }
+        
+        }
+
+        private void RemplirAbsences(Personnel personnel)
+        {
+            List<Absence> lesAbsences = controle.GetAbsences(personnel);
+            bdgAbsences.DataSource = lesAbsences;
+            dgvAbsences.DataSource = bdgAbsences;
+            dgvAbsences.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+        }
+
+        private void btnAfficherAbsence_Click(object sender, EventArgs e)
+        {
+            if (dgvPersonnel.SelectedRows.Count > 0)
+            {
+                Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                RemplirAbsences(personnel);
+            }
         }
     }
 }
