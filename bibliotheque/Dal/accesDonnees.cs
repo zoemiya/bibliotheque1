@@ -126,15 +126,15 @@ namespace bibliotheque.Dal
         public static List<Absence> GetAbsences(Personnel personnel)
         {
             List<Absence> lesAbsences = new List<Absence>();
-            string req = "select * from absence where idpersonnel = @idpersonnel order by datedebut desc ";
+            string req = "select datefin, datedebut, absence.idmotif, libelle from absence join motif on (absence.idmotif = motif.idmotif)";
+            req += "where idpersonnel = @idpersonnel order by datedebut desc ";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@idpersonnel", personnel.Idpersonnel);
             ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
             curs.ReqSelect(req, parameters);
-
             while (curs.Read())
             {
-                Absence absence = new Absence((DateTime)curs.Field("DATEDEBUT"), (DateTime)curs.Field("DATEFIN"), (int)curs.Field("IDMOTIF"));
+                Absence absence = new Absence((DateTime)curs.Field("DATEDEBUT"), (DateTime)curs.Field("DATEFIN"), (int)curs.Field("IDMOTIF"), (string)curs.Field("LIBELLE"));
                 lesAbsences.Add(absence);
                     
 
