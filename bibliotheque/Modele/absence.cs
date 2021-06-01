@@ -8,19 +8,23 @@ namespace bibliotheque.Modele
     /// </summary>
     public class Absence
     {
-        private int idabsence;
-        private string nom;
+        private DateTime dateDebut ;
+        private DateTime dateFin;
+        private int idmotif;
 
-        public int Idabsence { get => idabsence; }
-        public string Nom { get => nom; }
+        public DateTime DateDebut { get => dateDebut; }
+        public DateTime DateFin { get => dateFin; }
+
+        public int IdMotif { get => idmotif; }
 
         /// <summary>
         /// constructeur de classe
         /// </summary>
-        public Absence(int idabsence, string nom)
+        public Absence(DateTime dateDebut, DateTime dateFin, int idmotif)
         {
-            this.idabsence = idabsence;
-            this.nom = nom;
+            this.dateDebut = dateDebut;
+            this.dateFin = dateFin;
+            this.idmotif = idmotif;
           
         }
     }
