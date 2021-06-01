@@ -126,7 +126,7 @@ namespace bibliotheque.Dal
         public static List<Absence> GetAbsences(Personnel personnel)
         {
             List<Absence> lesAbsences = new List<Absence>();
-            string req = "select * from absence where idpersonnel = @idpersonnel order by datedebut ";
+            string req = "select * from absence where idpersonnel = @idpersonnel order by datedebut desc ";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@idpersonnel", personnel.Idpersonnel);
             ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
