@@ -220,6 +220,7 @@ namespace bibliotheque.Vue
             this.btnEnregistrerA.TabIndex = 12;
             this.btnEnregistrerA.Text = "enregistrer";
             this.btnEnregistrerA.UseVisualStyleBackColor = true;
+            this.btnEnregistrerA.Click += new System.EventHandler(this.btnEnregistrerA_Click);
             // 
             // btnAnnulerA
             // 
@@ -328,6 +329,7 @@ namespace bibliotheque.Vue
             this.btnAjouterA.TabIndex = 6;
             this.btnAjouterA.Text = "ajouter";
             this.btnAjouterA.UseVisualStyleBackColor = true;
+            this.btnAjouterA.Click += new System.EventHandler(this.btnAjouterA_Click);
             // 
             // btnModifierA
             // 

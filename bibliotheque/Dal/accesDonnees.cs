@@ -143,6 +143,22 @@ namespace bibliotheque.Dal
             return lesAbsences;
         }
 
+        public static List<Motif> GetLesMotifs()
+        {
+            List<Motif> lesMotifs = new List<Motif>();
+            string req = "select idmotif, libelle from motif order by libelle;";
+            ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
+            curs.ReqSelect(req, null);
+            while (curs.Read())
+            {
+                Motif motif = new Motif((int)curs.Field("IDMOTIF"), (string)curs.Field("LIBELLE"));
+                lesMotifs.Add(motif);
+            }
+            curs.Close();
+            return lesMotifs;
+        }
+
+
         public AccesDonnees()
         {
 

@@ -14,12 +14,21 @@ namespace bibliotheque.Modele
         public string Libelle { get => libelle; }
 
         /// <summary>
-        /// constructeur de classe
+        /// constructeur :valorise les proprietes
         /// </summary>
         public Motif(int idmotif, string libelle)
         {
             this.idmotif = idmotif;
             this.libelle = libelle;
+        }
+
+        /// <summary>
+        /// Definit l'information a afficher
+        /// </summary>
+        /// <returns>libelle du motif</returns>
+        public override string ToString()
+        {
+            return this.libelle;
         }
     }
 }

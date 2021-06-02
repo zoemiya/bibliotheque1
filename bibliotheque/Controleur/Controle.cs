@@ -95,6 +95,11 @@ namespace bibliotheque.Controleur
         {
             return AccesDonnees.GetAbsences(personnel);
         }
+
+        public List<Motif> GetLesMotifs()
+        {
+            return AccesDonnees.GetLesMotifs();
+        }
     
     }
 }

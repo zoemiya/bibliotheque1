@@ -24,6 +24,8 @@ namespace bibliotheque.Vue
 
         private Boolean enCoursDeModif = false;
 
+        private Boolean enCoursDeModifA = false;
+
         /// <summary>
         /// Objet pour gérer la liste du personnel
         /// </summary>
@@ -37,6 +39,8 @@ namespace bibliotheque.Vue
         /// Objet pour gérer la liste des absences
         /// </summary>
         BindingSource bdgAbsences = new BindingSource();
+
+        BindingSource bdgMotif = new BindingSource();
 
         /// <summary>
         /// Initialisation des composants graphiques
@@ -108,6 +112,7 @@ namespace bibliotheque.Vue
                 if (enCoursDeModif)
                 {
                     idpersonnel = ((Personnel)bdgPersonnel.List[bdgPersonnel.Position]).Idpersonnel;
+                
                 }
                 Personnel personnel = new Personnel(idpersonnel, txtNom.Text, txtPrenom.Text, txtTel.Text, txtMail.Text, service.Idservice, service.Nom);
                 if (enCoursDeModif)
@@ -192,6 +197,37 @@ namespace bibliotheque.Vue
             {
                 Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
                 RemplirAbsences(personnel);
+                btnAjouterA.Enabled = true;
+                btnModifierA.Enabled = true;
+                btnSupprimerA.Enabled = true;
+                RemplirListeMotifs();
+            }
+        }
+
+        private void btnAjouterA_Click(object sender, EventArgs e)
+        {
+            gbAbsences.Enabled = true;
+            gbAbsences.Text = "Ajouter une absence";
+
+        }
+
+        public void RemplirListeMotifs()
+        {
+            List<Motif> lesMotifs = controle.GetLesMotifs();
+            bdgMotif.DataSource = lesMotifs;
+            cbMotif.DataSource = bdgMotif;
+            if (cbMotif.Items.Count > 0)
+            {
+                cbMotif.SelectedIndex = 0;
+
+            }
+        }
+
+        private void btnEnregistrerA_Click(object sender, EventArgs e)
+        {
+            if( !(txtDebut.Text.Equals(""))&& !(txtFin.Text.Equals("")) && (cbMotif.SelectedIndex!=-1))
+            {
+
             }
         }
     }
