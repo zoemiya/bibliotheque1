@@ -47,8 +47,6 @@ namespace bibliotheque.Vue
             this.btnEnregistrerA = new System.Windows.Forms.Button();
             this.btnAnnulerA = new System.Windows.Forms.Button();
             this.cbMotif = new System.Windows.Forms.ComboBox();
-            this.txtFin = new System.Windows.Forms.TextBox();
-            this.txtDebut = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -64,6 +62,8 @@ namespace bibliotheque.Vue
             this.personnelTableAdapter = new bibliotheque.bibliothequeDataSetTableAdapters.personnelTableAdapter();
             this.dgvAbsences = new System.Windows.Forms.DataGridView();
             this.dgvPersonnel = new System.Windows.Forms.DataGridView();
+            this.dtpFin = new System.Windows.Forms.DateTimePicker();
+            this.dtpDebut = new System.Windows.Forms.DateTimePicker();
             this.gbPersonnel.SuspendLayout();
             this.gbAbsences.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bibliothequeDataSet)).BeginInit();
@@ -196,11 +196,11 @@ namespace bibliotheque.Vue
             // 
             // gbAbsences
             // 
+            this.gbAbsences.Controls.Add(this.dtpDebut);
+            this.gbAbsences.Controls.Add(this.dtpFin);
             this.gbAbsences.Controls.Add(this.btnEnregistrerA);
             this.gbAbsences.Controls.Add(this.btnAnnulerA);
             this.gbAbsences.Controls.Add(this.cbMotif);
-            this.gbAbsences.Controls.Add(this.txtFin);
-            this.gbAbsences.Controls.Add(this.txtDebut);
             this.gbAbsences.Controls.Add(this.label7);
             this.gbAbsences.Controls.Add(this.label6);
             this.gbAbsences.Controls.Add(this.label8);
@@ -238,20 +238,6 @@ namespace bibliotheque.Vue
             this.cbMotif.Name = "cbMotif";
             this.cbMotif.Size = new System.Drawing.Size(144, 21);
             this.cbMotif.TabIndex = 15;
-            // 
-            // txtFin
-            // 
-            this.txtFin.Location = new System.Drawing.Point(114, 51);
-            this.txtFin.Name = "txtFin";
-            this.txtFin.Size = new System.Drawing.Size(144, 20);
-            this.txtFin.TabIndex = 16;
-            // 
-            // txtDebut
-            // 
-            this.txtDebut.Location = new System.Drawing.Point(114, 24);
-            this.txtDebut.Name = "txtDebut";
-            this.txtDebut.Size = new System.Drawing.Size(144, 20);
-            this.txtDebut.TabIndex = 17;
             // 
             // label7
             // 
@@ -381,6 +367,20 @@ namespace bibliotheque.Vue
             this.dgvPersonnel.Size = new System.Drawing.Size(565, 177);
             this.dgvPersonnel.TabIndex = 11;
             // 
+            // dtpFin
+            // 
+            this.dtpFin.Location = new System.Drawing.Point(114, 48);
+            this.dtpFin.Name = "dtpFin";
+            this.dtpFin.Size = new System.Drawing.Size(200, 20);
+            this.dtpFin.TabIndex = 16;
+            // 
+            // dtpDebut
+            // 
+            this.dtpDebut.Location = new System.Drawing.Point(114, 19);
+            this.dtpDebut.Name = "dtpDebut";
+            this.dtpDebut.Size = new System.Drawing.Size(200, 20);
+            this.dtpDebut.TabIndex = 17;
+            // 
             // frmBibliotheque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -436,8 +436,6 @@ namespace bibliotheque.Vue
         private System.Windows.Forms.Button btnEnregistrerA;
         private System.Windows.Forms.Button btnAnnulerA;
         private System.Windows.Forms.ComboBox cbMotif;
-        private System.Windows.Forms.TextBox txtFin;
-        private System.Windows.Forms.TextBox txtDebut;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
@@ -446,5 +444,7 @@ namespace bibliotheque.Vue
         private bibliothequeDataSetTableAdapters.personnelTableAdapter personnelTableAdapter;
         private System.Windows.Forms.DataGridView dgvAbsences;
         private System.Windows.Forms.DataGridView dgvPersonnel;
+        private System.Windows.Forms.DateTimePicker dtpDebut;
+        private System.Windows.Forms.DateTimePicker dtpFin;
     }
 }

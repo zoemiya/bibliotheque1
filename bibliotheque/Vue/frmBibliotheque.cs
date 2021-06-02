@@ -227,8 +227,26 @@ namespace bibliotheque.Vue
         {
             if( !(txtDebut.Text.Equals(""))&& !(txtFin.Text.Equals("")) && (cbMotif.SelectedIndex!=-1))
             {
+                Motif motif = (Motif)bdgMotif.List[bdgMotif.Position];
+                Absence absence = new Absence(dtpDebut.Value, dtpFin.Value, motif.Idmotif, motif.Libelle);
+                if (enCoursDeModifA)
+                {
+                    controle.ModifierAbsence(absence);
+                    enCoursDeModif = false;
+                    gbAbsences.Text = "";
 
+                }
+                else
+                {
+                    controle.AjouterAbsence(absence);
+                }
+
+                RemplirListePersonnel();
             }
+            else
+            { MessageBox.Show("Tous les champs doivent être renseignés.", "Alerte"); }
         }
+    
+        
     }
 }
