@@ -108,13 +108,16 @@ namespace bibliotheque.Vue
             {
                 Service service = (Service)bdgService.List[bdgService.Position];
                 int idpersonnel = 0;
+                Personnel persoIni = ((Personnel)bdgPersonnel.List[bdgPersonnel.Position]);
                 if (enCoursDeModif)
                 {
-                    idpersonnel = ((Personnel)bdgPersonnel.List[bdgPersonnel.Position]).Idpersonnel;
+                    idpersonnel = persoIni.Idpersonnel;
                 
                 }
                 Personnel personnel = new Personnel(idpersonnel, txtNom.Text, txtPrenom.Text, txtMail.Text, txtTel.Text, service.Idservice, service.Nom);
-                if (enCoursDeModif)
+                if (enCoursDeModif && (MessageBox.Show("Voulez-vous vraiment modifier " + persoIni.Nom + " " + persoIni.Prenom + " ?", "Confirmation de modification", MessageBoxButtons.YesNo) == DialogResult.Yes))
+
+
                 {
                     controle.ModifierPersonnel(personnel);
                     enCoursDeModif = false;
