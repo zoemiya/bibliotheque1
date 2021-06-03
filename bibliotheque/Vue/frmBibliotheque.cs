@@ -215,6 +215,7 @@ namespace bibliotheque.Vue
                 RemplirListeMotifs();
                 idpers = personnel.Idpersonnel;
             }
+            else { MessageBox.Show("Une ligne doit être sélectionnée.", "Information");  }
         }
 
         private void btnAjouterA_Click(object sender, EventArgs e)
