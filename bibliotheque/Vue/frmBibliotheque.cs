@@ -96,11 +96,6 @@ namespace bibliotheque.Vue
             }
         }
 
-        private void btnEnregistrerP_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAjouterP_Click(object sender, EventArgs e)
         {
             gbPersonnel.Enabled = true;
@@ -118,7 +113,7 @@ namespace bibliotheque.Vue
                     idpersonnel = ((Personnel)bdgPersonnel.List[bdgPersonnel.Position]).Idpersonnel;
                 
                 }
-                Personnel personnel = new Personnel(idpersonnel, txtNom.Text, txtPrenom.Text, txtTel.Text, txtMail.Text, service.Idservice, service.Nom);
+                Personnel personnel = new Personnel(idpersonnel, txtNom.Text, txtPrenom.Text, txtMail.Text, txtTel.Text, service.Idservice, service.Nom);
                 if (enCoursDeModif)
                 {
                     controle.ModifierPersonnel(personnel);
@@ -132,6 +127,14 @@ namespace bibliotheque.Vue
                 }
                 
                 RemplirListePersonnel();
+                gbPersonnel.Enabled = false;
+                gbPersonnel.Text = "";
+                txtMail.Text = "";
+                txtNom.Text = "";
+                txtPrenom.Text = "";
+                txtTel.Text = "";
+
+                    
             }
             else
             { MessageBox.Show("Tous les champs doivent être renseignés.", "Alerte"); }
@@ -144,6 +147,8 @@ namespace bibliotheque.Vue
             txtTel.Text = "";
             txtMail.Text = "";
             cbService.SelectedIndex = 0;
+            gbPersonnel.Enabled = false;
+            gbPersonnel.Text = "";
         }
 
         private void btnModifierP_Click(object sender, EventArgs e)
