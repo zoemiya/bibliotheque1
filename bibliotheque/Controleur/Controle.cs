@@ -100,6 +100,16 @@ namespace bibliotheque.Controleur
         {
             return AccesDonnees.GetLesMotifs();
         }
+
+        public void AjouterAbsence(Absence absence)
+        {
+            AccesDonnees.AjouterAbsence(absence);
+        }
+
+        public void ModifierAbsence(Absence absence, DateTime dateDebutIni)
+        {
+            AccesDonnees.ModifierAbsence(absence, dateDebutIni);
+        }
     
     }
 }

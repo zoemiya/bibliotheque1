@@ -42,6 +42,10 @@ namespace bibliotheque.Vue
 
         BindingSource bdgMotif = new BindingSource();
 
+        private int idpers;
+
+        private DateTime dateDebutIni;
+
         /// <summary>
         /// Initialisation des composants graphiques
         /// Récupération du controleur
@@ -201,6 +205,7 @@ namespace bibliotheque.Vue
                 btnModifierA.Enabled = true;
                 btnSupprimerA.Enabled = true;
                 RemplirListeMotifs();
+                idpers = personnel.Idpersonnel;
             }
         }
 
@@ -225,13 +230,13 @@ namespace bibliotheque.Vue
 
         private void btnEnregistrerA_Click(object sender, EventArgs e)
         {
-            if( !(txtDebut.Text.Equals(""))&& !(txtFin.Text.Equals("")) && (cbMotif.SelectedIndex!=-1))
+            if( dtpDebut.Checked && dtpFin.Checked && (cbMotif.SelectedIndex!=-1))
             {
                 Motif motif = (Motif)bdgMotif.List[bdgMotif.Position];
-                Absence absence = new Absence(dtpDebut.Value, dtpFin.Value, motif.Idmotif, motif.Libelle);
+                Absence absence = new Absence(dtpDebut.Value, dtpFin.Value, motif.Idmotif, motif.Libelle, idpers);
                 if (enCoursDeModifA)
                 {
-                    controle.ModifierAbsence(absence);
+                    controle.ModifierAbsence(absence, dateDebutIni);
                     enCoursDeModif = false;
                     gbAbsences.Text = "";
 
@@ -241,12 +246,31 @@ namespace bibliotheque.Vue
                     controle.AjouterAbsence(absence);
                 }
 
+                RemplirAbsences((Personnel)bdgPersonnel.List[bdgPersonnel.Position]);
                 RemplirListePersonnel();
             }
             else
             { MessageBox.Show("Tous les champs doivent être renseignés.", "Alerte"); }
         }
-    
-        
+
+        private void btnModifierA_Click(object sender, EventArgs e)
+        {
+            if (dgvAbsences.SelectedRows.Count > 0)
+            {
+                gbAbsences.Text = "modifierAbsence";
+                gbAbsences.Enabled = true;
+                enCoursDeModifA = true;
+                Absence absence = (Absence)bdgAbsences.List[bdgAbsences.Position];
+                dtpDebut.Value = absence.DateDebut;
+                dtpFin.Value = absence.DateFin;
+                cbMotif.SelectedIndex = cbMotif.FindStringExact(absence.Motif);
+                dateDebutIni = absence.DateDebut;
+
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
+            }
+        }
     }
 }

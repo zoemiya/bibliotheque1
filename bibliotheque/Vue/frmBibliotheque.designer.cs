@@ -326,6 +326,7 @@ namespace bibliotheque.Vue
             this.btnModifierA.TabIndex = 7;
             this.btnModifierA.Text = "modifier";
             this.btnModifierA.UseVisualStyleBackColor = true;
+            this.btnModifierA.Click += new System.EventHandler(this.btnModifierA_Click);
             // 
             // btnSupprimerA
             // 

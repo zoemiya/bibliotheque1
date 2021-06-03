@@ -134,7 +134,7 @@ namespace bibliotheque.Dal
             curs.ReqSelect(req, parameters);
             while (curs.Read())
             {
-                Absence absence = new Absence((DateTime)curs.Field("DATEDEBUT"), (DateTime)curs.Field("DATEFIN"), (int)curs.Field("IDMOTIF"), (string)curs.Field("LIBELLE"));
+                Absence absence = new Absence((DateTime)curs.Field("DATEDEBUT"), (DateTime)curs.Field("DATEFIN"), (int)curs.Field("IDMOTIF"), (string)curs.Field("LIBELLE"), personnel.Idpersonnel);
                 lesAbsences.Add(absence);
                     
 
@@ -157,6 +157,35 @@ namespace bibliotheque.Dal
             curs.Close();
             return lesMotifs;
         }
+
+        public static void AjouterAbsence(Absence absence)
+        {
+            string req = "insert into absence(idpersonnel, datedebut, datefin, idmotif) ";
+            req += "values (@idpersonnel, @datedebut, @datefin, @idmotif);";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@idpersonnel", absence.Idpersonnel);
+            parameters.Add("@datedebut", absence.DateDebut);
+            parameters.Add("@datefin", absence.DateFin);
+            parameters.Add("@idmotif", absence.IdMotif);
+            
+            ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
+            conn.ReqUpdate(req, parameters);
+        }
+
+        public static void ModifierAbsence(Absence absence, DateTime dateDebutIni)
+        {
+            string req = "update absence set idpersonnel = @idpersonnel, datedebut=@datedebut, datefin=@datefin, motif=@motif ";
+            req += "where datedebut = @datedebutini;";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@idpersonnel", absence.Idpersonnel);
+            parameters.Add("@dateDebut", absence.DateDebut);
+            parameters.Add("@dateFin", absence.DateFin);
+            parameters.Add("@motif", absence.Motif);
+            parameters.Add("@datedebutini", dateDebutIni);
+            ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
+            conn.ReqUpdate(req, parameters);
+        }
+
 
 
         public AccesDonnees()
