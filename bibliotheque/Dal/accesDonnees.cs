@@ -174,14 +174,24 @@ namespace bibliotheque.Dal
 
         public static void ModifierAbsence(Absence absence, DateTime dateDebutIni)
         {
-            string req = "update absence set idpersonnel = @idpersonnel, datedebut=@datedebut, datefin=@datefin, motif=@motif ";
-            req += "where datedebut = @datedebutini;";
+            string req = "update absence set datedebut=@datedebut, datefin=@datefin, motif=@motif ";
+            req += "where datedebut = @datedebutini and idpersonnel = @idpersonnel;";
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             parameters.Add("@idpersonnel", absence.Idpersonnel);
             parameters.Add("@dateDebut", absence.DateDebut);
             parameters.Add("@dateFin", absence.DateFin);
             parameters.Add("@motif", absence.Motif);
             parameters.Add("@datedebutini", dateDebutIni);
+            ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
+            conn.ReqUpdate(req, parameters);
+        }
+
+        public static void SupprimerAbsence(Absence absence)
+        {
+            string req = "delete from absence where idpersonnel = @idpersonnel and datedebut=@datedebut;";
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("@idpersonnel", absence.Idpersonnel);
+            parameters.Add("@datedebut", absence.DateDebut);
             ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
             conn.ReqUpdate(req, parameters);
         }

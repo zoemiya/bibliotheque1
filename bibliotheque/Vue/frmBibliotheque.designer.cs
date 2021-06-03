@@ -44,6 +44,8 @@ namespace bibliotheque.Vue
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.gbAbsences = new System.Windows.Forms.GroupBox();
+            this.dtpDebut = new System.Windows.Forms.DateTimePicker();
+            this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.btnEnregistrerA = new System.Windows.Forms.Button();
             this.btnAnnulerA = new System.Windows.Forms.Button();
             this.cbMotif = new System.Windows.Forms.ComboBox();
@@ -62,8 +64,6 @@ namespace bibliotheque.Vue
             this.personnelTableAdapter = new bibliotheque.bibliothequeDataSetTableAdapters.personnelTableAdapter();
             this.dgvAbsences = new System.Windows.Forms.DataGridView();
             this.dgvPersonnel = new System.Windows.Forms.DataGridView();
-            this.dtpFin = new System.Windows.Forms.DateTimePicker();
-            this.dtpDebut = new System.Windows.Forms.DateTimePicker();
             this.gbPersonnel.SuspendLayout();
             this.gbAbsences.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bibliothequeDataSet)).BeginInit();
@@ -212,6 +212,20 @@ namespace bibliotheque.Vue
             this.gbAbsences.TabStop = false;
             this.gbAbsences.Text = "ajoutAbsence";
             // 
+            // dtpDebut
+            // 
+            this.dtpDebut.Location = new System.Drawing.Point(114, 19);
+            this.dtpDebut.Name = "dtpDebut";
+            this.dtpDebut.Size = new System.Drawing.Size(200, 20);
+            this.dtpDebut.TabIndex = 17;
+            // 
+            // dtpFin
+            // 
+            this.dtpFin.Location = new System.Drawing.Point(114, 48);
+            this.dtpFin.Name = "dtpFin";
+            this.dtpFin.Size = new System.Drawing.Size(200, 20);
+            this.dtpFin.TabIndex = 16;
+            // 
             // btnEnregistrerA
             // 
             this.btnEnregistrerA.Location = new System.Drawing.Point(9, 118);
@@ -337,6 +351,7 @@ namespace bibliotheque.Vue
             this.btnSupprimerA.TabIndex = 8;
             this.btnSupprimerA.Text = "supprimer";
             this.btnSupprimerA.UseVisualStyleBackColor = true;
+            this.btnSupprimerA.Click += new System.EventHandler(this.btnSupprimerA_Click);
             // 
             // bibliothequeDataSet
             // 
@@ -367,20 +382,6 @@ namespace bibliotheque.Vue
             this.dgvPersonnel.Name = "dgvPersonnel";
             this.dgvPersonnel.Size = new System.Drawing.Size(565, 177);
             this.dgvPersonnel.TabIndex = 11;
-            // 
-            // dtpFin
-            // 
-            this.dtpFin.Location = new System.Drawing.Point(114, 48);
-            this.dtpFin.Name = "dtpFin";
-            this.dtpFin.Size = new System.Drawing.Size(200, 20);
-            this.dtpFin.TabIndex = 16;
-            // 
-            // dtpDebut
-            // 
-            this.dtpDebut.Location = new System.Drawing.Point(114, 19);
-            this.dtpDebut.Name = "dtpDebut";
-            this.dtpDebut.Size = new System.Drawing.Size(200, 20);
-            this.dtpDebut.TabIndex = 17;
             // 
             // frmBibliotheque
             // 

@@ -110,6 +110,11 @@ namespace bibliotheque.Controleur
         {
             AccesDonnees.ModifierAbsence(absence, dateDebutIni);
         }
+
+        public void SupprimerAbsence(Absence absence)
+        {
+            AccesDonnees.SupprimerAbsence(absence);
+        }
     
     }
 }

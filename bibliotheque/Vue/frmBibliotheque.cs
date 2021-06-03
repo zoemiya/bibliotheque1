@@ -272,5 +272,25 @@ namespace bibliotheque.Vue
                 MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
             }
         }
+
+        private void btnSupprimerA_Click(object sender, EventArgs e)
+        {
+            if (dgvAbsences.SelectedRows.Count > 0)
+            {
+                Absence absence = (Absence)bdgAbsences.List[bdgAbsences.Position];
+                Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
+                if (MessageBox.Show("Voulez-vous vraiment supprimer l'absence de " + personnel.Nom + " " + personnel.Prenom +"commençant le" + absence.DateDebut +  " ?", "Confirmation de suppression", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    controle.SupprimerAbsence(absence);
+                    RemplirListePersonnel();
+                    RemplirAbsences(personnel);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
+            }
+
+        }
     }
 }
