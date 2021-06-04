@@ -98,6 +98,10 @@ namespace bibliotheque.Dal
             conn.ReqUpdate(req, parameters);
         }
 
+        /// <summary>
+        /// modification d'un membre du personnel
+        /// </summary>
+        /// <param name="personnel"></param>
         public static void ModifierPersonnel(Personnel personnel)
         {
             string req = "update personnel set nom = @nom, prenom = @prenom, tel = @tel, mail = @mail, idservice = @idservice ";
@@ -113,7 +117,10 @@ namespace bibliotheque.Dal
             conn.ReqUpdate(req, parameters);
         }
 
-
+        /// <summary>
+        /// suppression d'un membre du personnel
+        /// </summary>
+        /// <param name="personnel"></param>
         public static void SupprimerPersonnel(Personnel personnel)
         {
             string req = "delete from personnel where idpersonnel = @idpersonnel;";
@@ -123,6 +130,11 @@ namespace bibliotheque.Dal
             conn.ReqUpdate(req, parameters);
         }
 
+        /// <summary>
+        /// chargement de la liste des absences
+        /// </summary>
+        /// <param name="personnel"></param>
+        /// <returns>liste des absences</returns>
         public static List<Absence> GetAbsences(Personnel personnel)
         {
             List<Absence> lesAbsences = new List<Absence>();
@@ -143,6 +155,10 @@ namespace bibliotheque.Dal
             return lesAbsences;
         }
 
+        /// <summary>
+        /// chargement de la liste des motifs
+        /// </summary>
+        /// <returns>liste de motifs</returns>
         public static List<Motif> GetLesMotifs()
         {
             List<Motif> lesMotifs = new List<Motif>();
@@ -158,6 +174,10 @@ namespace bibliotheque.Dal
             return lesMotifs;
         }
 
+        /// <summary>
+        /// ajout d'une absence
+        /// </summary>
+        /// <param name="absence"></param>
         public static void AjouterAbsence(Absence absence)
         {
             string req = "insert into absence(idpersonnel, datedebut, datefin, idmotif) ";
@@ -172,6 +192,11 @@ namespace bibliotheque.Dal
             conn.ReqUpdate(req, parameters);
         }
 
+        /// <summary>
+        /// modification d'une absence
+        /// </summary>
+        /// <param name="absence"></param>
+        /// <param name="dateDebutIni, date de départ avant la modification"></param>
         public static void ModifierAbsence(Absence absence, DateTime dateDebutIni)
         {
             string req = "update absence set datedebut=@datedebut, datefin=@datefin, motif=@motif ";
@@ -186,6 +211,10 @@ namespace bibliotheque.Dal
             conn.ReqUpdate(req, parameters);
         }
 
+        /// <summary>
+        /// suppression d'une absence
+        /// </summary>
+        /// <param name="absence"></param>
         public static void SupprimerAbsence(Absence absence)
         {
             string req = "delete from absence where idpersonnel = @idpersonnel and datedebut=@datedebut;";
@@ -197,7 +226,9 @@ namespace bibliotheque.Dal
         }
 
 
-
+        /// <summary>
+        /// constructeur
+        /// </summary>
         public AccesDonnees()
         {
 

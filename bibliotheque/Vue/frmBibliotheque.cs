@@ -22,8 +22,14 @@ namespace bibliotheque.Vue
         /// </summary>
         private Controle controle;
 
+        /// <summary>
+        /// booleen pour savoir si c'est un ajout ou une modification de personnel
+        /// </summary>
         private Boolean enCoursDeModif = false;
 
+        /// <summary>
+        /// booleen pour savoir si c'est un ajout ou une modification d'absence
+        /// </summary>
         private Boolean enCoursDeModifA = false;
 
         /// <summary>
@@ -31,6 +37,9 @@ namespace bibliotheque.Vue
         /// </summary>
         BindingSource bdgPersonnel = new BindingSource();
 
+        /// <summary>
+        /// Objet pour gérer la liste des services
+        /// </summary>
         BindingSource bdgService = new BindingSource();
 
         
@@ -39,11 +48,19 @@ namespace bibliotheque.Vue
         /// Objet pour gérer la liste des absences
         /// </summary>
         BindingSource bdgAbsences = new BindingSource();
-
+        /// <summary>
+        /// objet pour gérer la liste des motifs
+        /// </summary>
         BindingSource bdgMotif = new BindingSource();
 
+        /// <summary>
+        /// numéro d'identification du personnel dont on gère les absences
+        /// </summary>
         private int idpers;
 
+        /// <summary>
+        /// date pour garder en mémoire la date de début de l'absence que l'on va modifier
+        /// </summary>
         private DateTime dateDebutIni;
 
         /// <summary>
@@ -58,6 +75,9 @@ namespace bibliotheque.Vue
             Init();
         }
 
+        /// <summary>
+        /// Initialisation de la frame : remplissage des listes
+        /// </summary>
         public void Init()
         {
             RemplirListePersonnel();
@@ -115,15 +135,20 @@ namespace bibliotheque.Vue
                 
                 }
                 Personnel personnel = new Personnel(idpersonnel, txtNom.Text, txtPrenom.Text, txtMail.Text, txtTel.Text, service.Idservice, service.Nom);
-                if (enCoursDeModif && (MessageBox.Show("Voulez-vous vraiment modifier " + persoIni.Nom + " " + persoIni.Prenom + " ?", "Confirmation de modification", MessageBoxButtons.YesNo) == DialogResult.Yes))
-
-
+                if (enCoursDeModif)
                 {
-                    controle.ModifierPersonnel(personnel);
-                    enCoursDeModif = false;
-                    gbPersonnel.Text = "";
-
-                }
+                    if (MessageBox.Show("Voulez-vous vraiment modifier " + persoIni.Nom + " " + persoIni.Prenom + " ?", "Confirmation de modification", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        controle.ModifierPersonnel(personnel);
+                        enCoursDeModif = false;
+                        gbPersonnel.Text = "";
+                    }
+                    else
+                    {
+                        gbPersonnel.Enabled = false;
+                        gbPersonnel.Text = "";
+                    }
+                }          
                 else
                 {
                     controle.AjouterPersonnel(personnel);
@@ -225,6 +250,9 @@ namespace bibliotheque.Vue
 
         }
 
+        /// <summary>
+        /// remplit la liste des motifs d'absence
+        /// </summary>
         public void RemplirListeMotifs()
         {
             List<Motif> lesMotifs = controle.GetLesMotifs();
@@ -241,22 +269,40 @@ namespace bibliotheque.Vue
         {
             if( dtpDebut.Checked && dtpFin.Checked && (cbMotif.SelectedIndex!=-1))
             {
+                Personnel personnel = (Personnel)bdgPersonnel.List[bdgPersonnel.Position];
                 Motif motif = (Motif)bdgMotif.List[bdgMotif.Position];
                 Absence absence = new Absence(dtpDebut.Value, dtpFin.Value, motif.Idmotif, motif.Libelle, idpers);
-                if (enCoursDeModifA)
+                if (enCoursDeModifA)             
                 {
-                    controle.ModifierAbsence(absence, dateDebutIni);
-                    enCoursDeModif = false;
-                    gbAbsences.Text = "";
+                    if (MessageBox.Show("Voulez-vous vraiment modifier l'absence de " + personnel.Nom + " " + personnel.Prenom + "commençant le" + absence.DateDebut + " ?", "Confirmation de modification", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        if (DateTime.Compare(absence.DateDebut, absence.DateFin) <= 0)
+                        {
+                            controle.ModifierAbsence(absence, dateDebutIni);
+                            enCoursDeModif = false;
+                            gbAbsences.Text = "";
 
+                        }
+                        else { MessageBox.Show("la date de fin est antérieur à celle de début", "Information"); }
+                    }
+                    else 
+                    { 
+                        gbAbsences.Text = "";
+                        gbAbsences.Enabled = false;
+                    }
                 }
                 else
                 {
-                    controle.AjouterAbsence(absence);
+                    if (DateTime.Compare(absence.DateDebut, absence.DateFin) <= 0)
+                    { controle.AjouterAbsence(absence); }
+                    else { MessageBox.Show("la date de fin est antérieur à celle de début", "Information"); }
+
                 }
 
                 RemplirAbsences((Personnel)bdgPersonnel.List[bdgPersonnel.Position]);
                 RemplirListePersonnel();
+                gbAbsences.Enabled = false;
+                gbAbsences.Text = "";
             }
             else
             { MessageBox.Show("Tous les champs doivent être renseignés.", "Alerte"); }
@@ -300,6 +346,12 @@ namespace bibliotheque.Vue
                 MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
             }
 
+        }
+
+        private void btnAnnulerA_Click(object sender, EventArgs e)
+        {
+            gbAbsences.Enabled = false;
+            gbAbsences.Text = "";
         }
     }
 }

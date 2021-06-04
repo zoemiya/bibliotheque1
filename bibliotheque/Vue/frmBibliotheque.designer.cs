@@ -244,6 +244,7 @@ namespace bibliotheque.Vue
             this.btnAnnulerA.TabIndex = 13;
             this.btnAnnulerA.Text = "annuler";
             this.btnAnnulerA.UseVisualStyleBackColor = true;
+            this.btnAnnulerA.Click += new System.EventHandler(this.btnAnnulerA_Click);
             // 
             // cbMotif
             // 

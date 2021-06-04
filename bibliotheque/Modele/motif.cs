@@ -7,10 +7,17 @@ namespace bibliotheque.Modele
     /// </summary>
     public class Motif
     {
-        private int idmotif;
-        private string libelle;
+        private readonly int idmotif;
+        private readonly string libelle;
 
+        /// <summary>
+        /// getter idmotif
+        /// </summary>
         public int Idmotif { get => idmotif; }
+
+        /// <summary>
+        /// getter libelle
+        /// </summary>
         public string Libelle { get => libelle; }
 
         /// <summary>

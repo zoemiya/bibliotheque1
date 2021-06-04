@@ -34,7 +34,7 @@ namespace bibliotheque.Controleur
         /// </summary>
         /// <param name="login"></param>
         /// <param name="pwd"></param>
-        /// <returns></returns>
+        /// <returns>vrai si l'authentification est valide, faux sinon</returns>
         public Boolean ControleAuthentification(string login, string pwd)
         {
             if (AccesDonnees.ControleAuthentification(login, pwd))
@@ -86,31 +86,57 @@ namespace bibliotheque.Controleur
             AccesDonnees.ModifierPersonnel(personnel);
         }
 
+        /// <summary>
+        /// demande la suppression d'un membre du personnel
+        /// </summary>
+        /// <param name="personnel"></param>
         public void SupprimerPersonnel(Personnel personnel)
         {
             AccesDonnees.SupprimerPersonnel(personnel);
         }
 
+        /// <summary>
+        /// demande le chagement des absences d'un membre du personnel
+        /// </summary>
+        /// <param name="personnel"></param>
+        /// <returns>liste des absences</returns>
         public List<Absence> GetAbsences(Personnel personnel)
         {
             return AccesDonnees.GetAbsences(personnel);
         }
 
+        /// <summary>
+        /// demande le chargement des différents motifs
+        /// </summary>
+        /// <returns>liste des motifs</returns>
         public List<Motif> GetLesMotifs()
         {
             return AccesDonnees.GetLesMotifs();
         }
 
+        /// <summary>
+        /// demande l'ajout d'une absence
+        /// </summary>
+        /// <param name="absence"></param>
         public void AjouterAbsence(Absence absence)
         {
             AccesDonnees.AjouterAbsence(absence);
         }
 
+        /// <summary>
+        /// demande la modification d'une absence
+        /// </summary>
+        /// <param name="absence"></param>
+        /// <param name="dateDebutIni"></param>
         public void ModifierAbsence(Absence absence, DateTime dateDebutIni)
         {
             AccesDonnees.ModifierAbsence(absence, dateDebutIni);
         }
 
+        /// <summary>
+        /// demande la suppression d'une absencee 
+        /// </summary>
+        /// <param name="absence"></param>
         public void SupprimerAbsence(Absence absence)
         {
             AccesDonnees.SupprimerAbsence(absence);

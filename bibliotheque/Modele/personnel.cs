@@ -7,22 +7,47 @@ namespace bibliotheque.Modele
     /// </summary>
     public class Personnel
     {
-        private int idpersonnel;
-        private int idservice;
-        private string service;
-        private string nom;
-        private string prenom;
-        private string mail;
-        private string tel;
+        private readonly int idpersonnel;
+        private readonly int idservice;
+        private readonly string service;
+        private readonly string nom;
+        private readonly string prenom;
+        private readonly string mail;
+        private readonly string tel;
 
+        /// <summary>
+        /// getter idpersonnel
+        /// </summary>
         public int Idpersonnel { get => idpersonnel; }
+
+        /// <summary>
+        /// getter nom
+        /// </summary>
         public string Nom { get => nom; }
+
+        /// <summary>
+        /// getter prenom
+        /// </summary>
         public string Prenom { get => prenom; }
+
+        /// <summary>
+        /// getter tel
+        /// </summary>
         public string Tel { get => tel; }
+
+        /// <summary>
+        /// getter mail
+        /// </summary>
         public string Mail { get => mail; }
 
+        /// <summary>
+        /// getter service
+        /// </summary>
         public string Service { get => service; }
 
+        /// <summary>
+        /// getter idservice
+        /// </summary>
         public int Idservice { get => idservice; }
 
         /// <summary>

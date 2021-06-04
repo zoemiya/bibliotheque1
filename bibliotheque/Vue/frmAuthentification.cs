@@ -11,8 +11,14 @@ using bibliotheque.Controleur;
 
 namespace bibliotheque.Vue
 {
+    /// <summary>
+    /// Fenêtre d'affichage du personnel et de leurs absences
+    /// </summary>
     public partial class frmAuthentification : Form
     {
+        /// <summary>
+        /// instance de la classe Controle
+        /// </summary>
         private Controle controle;
 
         /// <summary>
